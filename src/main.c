@@ -17,7 +17,7 @@ typedef struct Player {
 } Player;
 
 typedef struct EnvItem {
-	Rectangle character;
+	Rectangle character; 
 	int blocking;
 	Color color;
 } EnvItem;
