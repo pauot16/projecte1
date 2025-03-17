@@ -4,20 +4,20 @@
 #include "items.h"
 #include <vector>
 
-#define G 1000
+#define G 900
 #define PLAYER_JUMP_SPD 450.0f
 #define PLAYER_HOR_SPD 400.0f
 
 void UpdatePlayer(Player* player, EnvItem* envItems, int envItemsLength, float delta)
 {
-    float playerWidth = 40.0f;   
+    float playerWidth = 20.0f;   
     float playerHeight = 40.0f; 
 
     Rectangle playerRect = { player->position.x - playerWidth / 2, player->position.y - playerHeight / 2, playerWidth, playerHeight }; 
     
     if (IsKeyDown(KEY_A)) player->position.x -= PLAYER_HOR_SPD * delta;
     if (IsKeyDown(KEY_D)) player->position.x += PLAYER_HOR_SPD * delta;
-    if (IsKeyDown(KEY_SPACE) && player->canJump)
+    if (IsKeyDown(KEY_W) && player->canJump)
     {
         player->speed = -PLAYER_JUMP_SPD;
         player->canJump = false;
@@ -58,6 +58,10 @@ void UpdatePlayer(Player* player, EnvItem* envItems, int envItemsLength, float d
         player->position.y += player->speed * delta;
         player->speed += G * delta;  // Apply gravity
         player->canJump = false; // Can't jump unless on the ground
+    }
+    else if(hitCeiling)
+    {
+        player->canJump = false; // Can jump only if the player is on the ground
     }
     else
     {

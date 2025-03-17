@@ -14,8 +14,8 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenWidth = 850;
+    const int screenHeight = 650;
 
     InitWindow(screenWidth, screenHeight, "Fox Flare");
 
@@ -23,6 +23,8 @@ int main(void)
     player.position = Vector2{ 400, 280 };
     player.speed = 0;
     player.canJump = false;
+
+
     EnvItem envItems[] = {
         {{ 0, 0, 2000, 400 }, 0, LIGHTGRAY },
         {{ 0, 400, 2000, 200 }, 1, GRAY },
@@ -78,14 +80,14 @@ int main(void)
 
         for (int i = 0; i < envItemsLength; i++) DrawRectangleRec(envItems[i].rect, envItems[i].color);
 
-        Rectangle playerRect = { player.position.x - 18, player.position.y - 20, 40.0f, 40.0f };
+        Rectangle playerRect = { player.position.x - 20, player.position.y - 20, 20.0f, 40.0f };
         DrawRectangleRec(playerRect, RED);
 
         EndMode2D();
 
         DrawText("Controls:", 20, 20, 10, BLACK);
         DrawText("- A/D to move", 40, 40, 10, DARKGRAY);
-        DrawText("- Space to jump", 40, 60, 10, DARKGRAY);
+        DrawText("- W to jump", 40, 60, 10, DARKGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
